@@ -15,7 +15,7 @@ import { appReducer } from './_store/app.state';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     }),
