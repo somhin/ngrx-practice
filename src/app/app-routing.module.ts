@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CounterComponent } from './counter/counter.component';
 import { HomeComponent } from './home/home.component';
 import { AddPostComponent } from './post/add-post/add-post.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
@@ -13,18 +12,12 @@ const routes: Routes = [
   },
   {
     path: 'counter',
-    component: CounterComponent,
+    loadChildren: () =>
+      import('./counter/counter.module').then((m) => m.CounterModule),
   },
   {
-    path: 'post',
-    component: PostListComponent,
-    children: [
-      { path: 'add', component: AddPostComponent },
-      {
-        path: 'edit/:id',
-        component: EditPostComponent,
-      },
-    ],
+    path: 'posts',
+    loadChildren: () => import('./post/post.module').then((m) => m.PostModule),
   },
 ];
 
