@@ -34,14 +34,17 @@
           class="nav-link"
           [routerLink]="['auth/login']"
           routerLinkActive="active"
+          *ngIf="!(isAuthenticated | async)"
           >Login</a
         >
         <a
           class="nav-link"
           [routerLink]="['auth/register']"
           routerLinkActive="active"
+          *ngIf="!(isAuthenticated | async)"
           >Signup</a
         >
+        <a class="nav-link" *ngIf="isAuthenticated | async">Logout</a>
       </div>
     </div>
   </div>
