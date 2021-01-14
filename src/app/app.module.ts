@@ -11,9 +11,15 @@ import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from './auth/_state/auth.effecs';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    LoadingSpinnerComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
