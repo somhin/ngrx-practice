@@ -44,7 +44,7 @@
           *ngIf="!(isAuthenticated | async)"
           >Signup</a
         >
-        <a class="nav-link" *ngIf="isAuthenticated | async">Logout</a>
+        <a class="nav-link" *ngIf="isAuthenticated | async" (click)="logout($event)">Logout</a>
       </div>
     </div>
   </div>
