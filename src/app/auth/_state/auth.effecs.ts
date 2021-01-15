@@ -10,7 +10,7 @@ import {
   setErrorMessage,
   setLoadingSpinner,
 } from 'src/app/_store/shared/shared.actions';
-import { Login, LoginSuccess } from './auth.action';
+import { Login, LoginSuccess, signUp, signUpSuccess } from './auth.action';
 
 @Injectable()
 export class AuthEffects {
@@ -44,15 +44,51 @@ export class AuthEffects {
     );
   });
 
-  loginRedirect$ = createEffect(
+  signUp$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(signUp),
+      exhaustMap((action) => {
+        return this.authService.signUp(action.email, action.password).pipe(
+          map((data) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const user = this.authService.formatUser(data);
+            return signUpSuccess({ user });
+          }),
+          catchError((errRes) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const errorMessage = this.authService.getErrorMessage(
+              errRes.error.error.message
+            );
+            return of(setErrorMessage({ message: errorMessage }));
+          })
+        );
+      })
+    );
+  });
+
+  Redirect$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(LoginSuccess),
+        ofType(...[LoginSuccess, signUpSuccess]),
         tap((action) => {
+          this.store.dispatch(setErrorMessage({ message: '' }));
           this.router.navigate(['/']);
         })
       );
     },
     { dispatch: false }
   );
+
+  // signupRedirect$ = createEffect(
+  //   () => {
+  //     return this.actions$.pipe(
+  //       ofType(signUpSuccess),
+  //       tap((action) => {
+  //         this.store.dispatch(setErrorMessage({ message: '' }));
+  //         this.router.navigate(['/']);
+  //       })
+  //     );
+  //   },
+  //   { dispatch: false }
+  // );
 }
