@@ -5,11 +5,5 @@ export interface PostsState {
 }
 
 export const initialState: PostsState = {
-  posts: [
-    {
-      id: '1',
-      title: 'hi there!',
-      description: 'this is the first post in the initial state',
-    },
-  ],
+  posts: null
 };

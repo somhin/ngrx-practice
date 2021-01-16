@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/_models/post.model';
 import { AppState } from 'src/app/_store/app.state';
-import { deletePost } from '../state/post.actions';
+import { deletePost, loadPosts } from '../state/post.actions';
 import { getPosts } from '../state/post.selector';
 
 @Component({
@@ -18,6 +18,7 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts$ = this.store.select(getPosts);
+    this.store.dispatch(loadPosts());
   }
 
   deletePost(id: string) {
