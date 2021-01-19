@@ -38,8 +38,6 @@ export class AuthEffects {
             this.store.dispatch(setErrorMessage({ message: '' }));
             const user = this.authService.formatUser(data);
 
-            console.log("save 'user' to local storage");
-
             this.authService.saveUserLocalStorage(user);
 
             return LoginSuccess({ user, redirect: true });
