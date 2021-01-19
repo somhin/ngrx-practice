@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-3" *ngIf="post | async as postData">
+      <h1>{{ postData.title }}</h1>
+      <p>id: {{ postData.id }}</p>
+      <hr />
+      <p>{{ postData.description }}</p>
+    </div>
+    <a [routerLink]="['/posts']">Back to posts</a>
+  </div>
+</div>

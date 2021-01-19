@@ -26,6 +26,12 @@ export class PostsService {
       );
   }
 
+  getPostById(id: string): Observable<Post> {
+    return this.http.get<Post>(
+      `https://ngrx-project-ecdfa-default-rtdb.firebaseio.com/posts/${id}.json`
+    );
+  }
+
   addPost(post: Post): Observable<{ name: string }> {
     return this.http.post<{ name: string }>(
       `https://ngrx-project-ecdfa-default-rtdb.firebaseio.com/posts.json`,

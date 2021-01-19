@@ -15,7 +15,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let post of postsData">
-          <td>{{ post.title }}</td>
+          <td>
+            <a [routerLink]="['/posts/detail', post.id]">{{ post.title }}</a>
+          </td>
           <td>{{ post.description }}</td>
           <td class="d-flex gap-1">
             <a class="btn btn-secondary" [routerLink]="['edit', post.id]"
