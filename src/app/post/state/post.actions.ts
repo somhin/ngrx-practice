@@ -16,7 +16,7 @@ export const LOAD_POSTS_SUCCESS = '[POST] Post loaded';
 export const addPost = createAction(ADD_POST_ACTION, props<{ post: Post }>());
 export const addPostSuccess = createAction(
   ADD_POST_SUCCESS,
-  props<{ post: Post }>()
+  props<{ post: Post; redirect: boolean }>()
 );
 
 export const updatePost = createAction(
@@ -25,7 +25,7 @@ export const updatePost = createAction(
 );
 export const updatePostSuccess = createAction(
   UPDATE_POST_SUCCESS,
-  props<{ post: Post }>()
+  props<{ post: Post; redirect: boolean }>()
 );
 
 export const deletePost = createAction(
